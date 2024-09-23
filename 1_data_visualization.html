@@ -240,7 +240,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/eunhyechoe/psyc60" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -257,7 +257,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F1_data_visualization.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/eunhyechoe/psyc60/issues/new?title=Issue%20on%20page%20%2F1_data_visualization.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -518,7 +518,7 @@ document.write(`
 </section>
 <section id="plot-time-series">
 <h2>5. Plot Time-series<a class="headerlink" href="#plot-time-series" title="Link to this heading">#</a></h2>
-<p>Each row of the data represents the time points (TR), and the columns correspond to the cortical vertices (9675). You can plot a response time series of a cortical vertex. Here, we can plot one for the first vertex index.</p>
+<p>Each row of the data represents the time points (TR = 0 to 450), and the columns correspond to the cortical vertices (9675). You can plot a response time series of a cortical vertex. Here, we can plot one for the first vertex index.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 5</span>
@@ -537,16 +537,6 @@ document.write(`
 </pre></div>
 </div>
 <img alt="_images/e7ce850cb74e40aff9d451d45b796e27fabab250446f15d65e11c365841139e4.png" src="_images/e7ce850cb74e40aff9d451d45b796e27fabab250446f15d65e11c365841139e4.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#fig, ax = plt.subplots(1, 1, figsize=(4, 1), dpi=200)</span>
-<span class="c1">#ax.plot(dm[:, 0])</span>
-<span class="c1">#ax.set_xlabel(&#39;Time points (TR)&#39;)</span>
-<span class="c1">#plt.show()</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -577,13 +567,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># OR you can load the left hemisphere data</span>
-<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">dset</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="s1">&#39;forrest&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">)[</span><span class="mi">47</span><span class="p">,:],</span> <span class="n">dm</span><span class="p">[</span><span class="mi">47</span><span class="p">,:]],</span>
-      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
+<span class="c1"># nb.plot([dset.get_data(sid, &#39;forrest&#39;, 1, &#39;l&#39;)[47,:], dm[47,:]],</span>
+<span class="c1">#      cmap=&#39;bwr&#39;, vmax=4, vmin=-4, title=&#39;Response pattern&#39;)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/ee44481b40fba4821045302eddb4381f51a37c91f53beff0261ae338be80527f.png" src="_images/ee44481b40fba4821045302eddb4381f51a37c91f53beff0261ae338be80527f.png" />
 </div>
 </div>
 <section id="import-searchlight-indices">
@@ -598,6 +585,20 @@ document.write(`
 <span class="n">SLS_ico8_10mm_rh</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">sls</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="n">center_space</span><span class="o">=</span><span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">return_dists</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">SLS_ico8_15mm_rh</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">sls</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="n">center_space</span><span class="o">=</span><span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">return_dists</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">SLS_ico8_20mm_rh</span><span class="p">,</span> <span class="n">Dists_ico8_20mm_rh</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">sls</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="n">center_space</span><span class="o">=</span><span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">return_dists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SLS_ico8_10mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2525, 2288, 1652, 3359,  612, 2702, 9038,  834, 5731, 3319, 1204,
+       9134, 7832, 3580, 7226, 6084, 6216, 6463,  559, 3358, 2458, 8225,
+       9526, 6386, 8083, 6425, 9562])
 </pre></div>
 </div>
 </div>
@@ -792,11 +793,51 @@ document.write(`
 </div>
 </div>
 </div>
-<p>To simplify the calculation, we downsample the data matrix from ico32 resolution to ico8 resolution.</p>
+<p>The data consist of a total of 9666 vertices. By calculating the correlation along the time series for all pairs of vertices, we can generate the connectivity matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xfm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">squareform</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(46710945,) (9666, 9666)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="n">_</span><span class="o">/</span><span class="mf">2.54</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Functional connectivity matrix&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Vertices&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Vertices&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/663c16575db0c41f455848be0c7427976addf37f9575dab9a56d59cddd86c3a6.png" src="_images/663c16575db0c41f455848be0c7427976addf37f9575dab9a56d59cddd86c3a6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To simplify the calculation, we can downsample the data matrix from ico32 resolution to ico8 resolution.</span>
+<span class="n">xfm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">xfm</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9666, 607)
 </pre></div>
 </div>
 </div>
@@ -804,6 +845,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm_ico32</span> <span class="o">=</span> <span class="n">dm</span>
+
 <span class="n">dm_ico8</span> <span class="o">=</span> <span class="n">dm_ico32</span> <span class="o">@</span> <span class="n">xfm</span>
 </pre></div>
 </div>
@@ -821,7 +863,6 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Now the data consist of a total of 603 vertices. By calculating the correlation along the time series for all pairs of vertices, we can generate the connectivity matrix.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">dm_ico8</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
