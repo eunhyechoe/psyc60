@@ -414,16 +414,13 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 1</span>
 <span class="c1"># start and install neuroboros</span>
-<span class="o">%%</span> <span class="n">capture</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">neuroboros</span> <span class="n">hyperalignment</span>
+<span class="o">%%capture</span>
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">neuroboros</span> <span class="n">hyperalignment</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-    <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">neuroboros</span> <span class="n">hyperalignment</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Line magic function `%%capture` not found.
 </pre></div>
 </div>
 </div>
@@ -513,7 +510,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9675)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9666)
 </pre></div>
 </div>
 </div>
@@ -536,7 +533,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b9a056e4a8f94fb1bd428b8a0e84c0b996073f5b6500c56f3a09e7a51dd72af4.png" src="_images/b9a056e4a8f94fb1bd428b8a0e84c0b996073f5b6500c56f3a09e7a51dd72af4.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;FFA center vertex&#39;)
+</pre></div>
+</div>
+<img alt="_images/e7ce850cb74e40aff9d451d45b796e27fabab250446f15d65e11c365841139e4.png" src="_images/e7ce850cb74e40aff9d451d45b796e27fabab250446f15d65e11c365841139e4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -570,23 +570,26 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/d3a29f6e8dd9c9eac10f709609f13c5e4e2d32c2d42b073f3137969f2c3238da.png" src="_images/d3a29f6e8dd9c9eac10f709609f13c5e4e2d32c2d42b073f3137969f2c3238da.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># OR you can load the left hemisphere data</span>
 <span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">dset</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="s1">&#39;forrest&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">)[</span><span class="mi">47</span><span class="p">,:],</span> <span class="n">dm</span><span class="p">[</span><span class="mi">47</span><span class="p">,:]],</span>
-       <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
+      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/916e9c9730fb1c2cc159c085cee3aa37ea3bbd151207bc36595aa4705e47e2b2.png" src="_images/916e9c9730fb1c2cc159c085cee3aa37ea3bbd151207bc36595aa4705e47e2b2.png" />
+<img alt="_images/ee44481b40fba4821045302eddb4381f51a37c91f53beff0261ae338be80527f.png" src="_images/ee44481b40fba4821045302eddb4381f51a37c91f53beff0261ae338be80527f.png" />
 </div>
 </div>
 <section id="import-searchlight-indices">
 <h3>7. Import searchlight indices<a class="headerlink" href="#import-searchlight-indices" title="Link to this heading">#</a></h3>
 <p>The brain has a complex 3D structure. This can be simplified by representing its surface as a mesh of small triangles. Using the <code class="docutils literal notranslate"><span class="pre">nb.sls</span></code> function, you can extract coordinates from a spherical region on this surface mesh.</p>
-<p><code class="docutils literal notranslate"><span class="pre">nb.sls</span></code> returns the vertex indices for each searchlight as a list of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays. In this step, you will focus on the right hemisphere with a 15 mm radius, using the <code class="docutils literal notranslate"><span class="pre">onavg</span></code> (OpenNeuro Average) template at ico8 resolution.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nb.sls</span></code> returns the vertex indices for each searchlight as a list of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays. In this step, you will focus on the right hemisphere with a 20 mm radius, using the <code class="docutils literal notranslate"><span class="pre">onavg</span></code> (OpenNeuro Average) template at ico8 resolution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 7</span>
@@ -606,13 +609,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-1-f313e90d6d95&gt;</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_15mm_rh</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">SLS_ico8_15mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="ne">NameError</span>: name &#39;SLS_ico8_15mm_rh&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2525, 2288, 1652, 3359,  612, 2702, 9038,  834, 5731, 3319, 1204,
+       9134, 7832, 3580, 7226, 6084, 6216, 6463,  559, 3358, 2458, 8225,
+       9526, 6386, 8083, 6425, 9562,  543, 1496, 3221, 4587, 8871, 2832,
+        261, 1199, 4456, 2622,  457, 2580, 4717, 2094,  477, 5238, 6443,
+       3809, 8748, 5673,  951,  632, 3115, 6588, 6449, 5239, 4947, 2763,
+       8649, 5864, 1084, 7738, 7697, 3902, 1896, 7597, 7803, 8342])
 </pre></div>
 </div>
 </div>
@@ -692,42 +694,48 @@ document.write(`
 <p>We can plot response patterns for one ico8 searchlight (262 for FFA).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(list, 607)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">sls</span><span class="p">[</span><span class="mi">262</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sls</span><span class="p">[</span><span class="mi">262</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="mi">262</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="mi">262</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(numpy.ndarray, 119)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(numpy.ndarray, 125)
 </pre></div>
 </div>
 </div>
 </div>
-<p>The ico8 searchlight for right FFA (radius = 20 mm) has 119 vertex indices.</p>
+<p>The ico8 searchlight for right FFA (radius = 20 mm) has 125 vertex indices.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sls</span><span class="p">[</span><span class="mi">262</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="mi">262</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   0, 1488, 1885, 6595,  409, 1341, 6012,  799, 8350, 8080, 8972,
-       8813, 5883,  845, 1683, 2143, 9587, 8816, 4977, 1161, 3872, 3728,
-        868, 8798,  263, 2180, 7757, 6766, 3021, 3807, 4512, 6800, 3145,
-       7768, 1748, 8105, 7597, 6797, 6950, 1631, 2997, 8907, 3637, 5618,
-       9403, 7879, 4972, 2389, 2419, 2878, 3903, 3822, 1688,  785, 6271,
-       1193, 1635, 9372, 7258, 3701, 5629, 8811, 7840, 2023, 4493, 1705,
-       1685, 2865, 2039, 7608, 5351, 7648,  929, 2784, 6093, 3219, 8630,
-       4402, 8240, 6872, 3699, 9557, 2279, 2289, 3897, 2131, 1978, 5433,
-       9262, 6507, 3094, 4408, 4838, 3154, 9132, 3905,  666, 9590, 8898,
-       2899, 3123, 7918, 7789, 1944, 9645, 1493, 2651, 4028,  441, 4855,
-         94, 2941, 3842, 9272, 4794, 5934, 6901, 9409, 5739])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6579, 5046, 2891, 2069, 4324, 2188, 7195, 2597, 4337, 4872,  406,
+       9215, 4559, 6360, 4141, 1662, 9048, 6314, 5789, 2874, 1635, 6850,
+       2691, 2884, 7741, 7662, 1879, 6519,  755, 8054, 5313, 5010, 2947,
+       9250, 9465, 2930, 3209, 3371, 6942, 8482, 4354, 1438, 2228, 8246,
+       8654, 8879, 8722, 5564, 8753, 3417, 5341, 5934, 1150, 1794, 3924,
+       6110, 7088, 1703, 1806,  750, 8768, 2759, 1612, 9227, 3872, 4282,
+       5170, 4059, 7942, 7148, 6168, 2954, 5979, 5272, 7584, 6121, 3794,
+       4225, 3600,  193, 4474, 2628, 5811, 5224, 1190,  351, 1024, 6975,
+       7836, 3085, 6321, 1291, 3606, 6212, 3219,  181, 4247, 8163, 1494,
+       7824,  264, 7772, 8511, 1501, 4163, 7723, 1081, 4968, 6925, 2630,
+       4911, 3643,  437, 9423, 6921, 3031, 8299, 2560, 4914, 8617, 7491,
+       9200, 7353, 6593,    8])
 </pre></div>
 </div>
 </div>
@@ -735,8 +743,13 @@ document.write(`
 <p>We can extract the data for the right FFA searchlight.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl_dm</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[:,</span> <span class="n">sls</span><span class="p">[</span><span class="mi">262</span><span class="p">]]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sl_dm</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[:,</span> <span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="mi">262</span><span class="p">]]</span>
 <span class="n">sl_dm</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 125)
 </pre></div>
 </div>
 </div>
@@ -744,23 +757,22 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 8</span>
-<span class="c1"># plot responses in one searchlight</span>
+<span class="c1"># plot responses in one searchlight (right FFA) for time-point 47</span>
 <span class="n">sl</span> <span class="o">=</span> <span class="mi">262</span> <span class="c1"># right FFA</span>
 <span class="n">tp</span> <span class="o">=</span> <span class="mi">47</span>
 
 <span class="n">rh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
 <span class="n">rh_sl</span> <span class="o">=</span> <span class="n">rh_minus_one</span>
-<span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">])):</span>
-  <span class="n">rh_sl</span><span class="p">[</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="mi">47</span><span class="p">,</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span>
 
-<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">rh_minus_one</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">])):</span>
+  <span class="n">rh_sl</span><span class="p">[</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="n">tp</span><span class="p">,</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span>
+
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">rh_sl</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(list, 9675)
-</pre></div>
-</div>
+<img alt="_images/8d597fae9ce6e12d131a32a067f0436ba91959d3d07e5c71dbea82d5c5f52ac2.png" src="_images/8d597fae9ce6e12d131a32a067f0436ba91959d3d07e5c71dbea82d5c5f52ac2.png" />
 </div>
 </div>
 </section>
@@ -775,7 +787,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9675)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9666)
 </pre></div>
 </div>
 </div>
@@ -783,7 +795,7 @@ document.write(`
 <p>To simplify the calculation, we downsample the data matrix from ico32 resolution to ico8 resolution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xfm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xfm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">xfm</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -804,7 +816,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9675) (9675, 603) (451, 603)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9666) (9666, 607) (451, 607)
 </pre></div>
 </div>
 </div>
@@ -819,7 +831,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(181503,) (603, 603)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(183921,) (607, 607)
 </pre></div>
 </div>
 </div>
@@ -841,7 +853,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/35108f62b958d53cc91700ea349f5ddcde4d880ac536c3a1ed5c3b41fc78e4fb.png" src="_images/35108f62b958d53cc91700ea349f5ddcde4d880ac536c3a1ed5c3b41fc78e4fb.png" />
+<img alt="_images/f9e561ce4bfbd609d59b12cb445c3d62fd23885f358ebd47fb49ce5aeb14a784.png" src="_images/f9e561ce4bfbd609d59b12cb445c3d62fd23885f358ebd47fb49ce5aeb14a784.png" />
 </div>
 </div>
 </section>
