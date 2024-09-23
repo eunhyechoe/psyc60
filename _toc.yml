@@ -4,6 +4,10 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: 1_data_visualization
+- file: 2_ISC
+- file: 3_functional_connectivity
+- file: 4_simple_contrasts
+- file: 5_RSA_localizer
+- file: 6_RSA_movie
+
