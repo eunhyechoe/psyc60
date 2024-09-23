@@ -1,7 +1,7 @@
 # PSYC60 Lab Exercise
 ## Principles of Human Brain Mapping with fMRI (FA24)
   
-Open each notebook in this page by clicking the `Open in Colab` button on the top.
+Open each notebook in this page by clicking the ![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg) button on the top.
   
 Once the notebook is open in Colab, save a copy to your Google Drive.
   
