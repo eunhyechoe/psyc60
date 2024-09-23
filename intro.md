@@ -4,7 +4,6 @@
 Open each notebook in this page by clicking the `Open in Colab` button on the top.
   
 Once the notebook is open in Colab, save a copy to your Google Drive.
-![colab_copy](colab_copy.png)
   
 To submit your assignment, download the notebook in the `.ipynb` format using the download tab.
 ![colab_save](colab_save.png)
