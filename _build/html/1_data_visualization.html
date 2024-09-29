@@ -386,12 +386,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-dataset">3. Define dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">4. Load the data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-time-series">5. Plot Time-series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-response-pattern">6. Plot Response Pattern</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-searchlight-indices">7. Import searchlight indices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity-profile">6. Funcional Connectivity Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-response-pattern">6. Plot Response Pattern</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-searchlight-indices">7. Import searchlight indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity-profile">9. Funcional Connectivity Profile</a></li>
 </ul>
             </nav>
         </div>
@@ -604,8 +602,9 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
 <section id="import-searchlight-indices">
-<h3>7. Import searchlight indices<a class="headerlink" href="#import-searchlight-indices" title="Link to this heading">#</a></h3>
+<h2>7. Import searchlight indices<a class="headerlink" href="#import-searchlight-indices" title="Link to this heading">#</a></h2>
 <p>The brain has a complex 3D structure. This can be simplified by representing its surface as a mesh of small triangles. Using the <code class="docutils literal notranslate"><span class="pre">nb.sls</span></code> function, you can extract coordinates from a spherical region on this surface mesh.</p>
 <p><code class="docutils literal notranslate"><span class="pre">nb.sls</span></code> returns the vertex indices for each searchlight as a list of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays. In this step, you will focus on the right hemisphere with a 20 mm radius, using the <code class="docutils literal notranslate"><span class="pre">onavg</span></code> (OpenNeuro Average) template at ico8 resolution.</p>
 <div class="cell docutils container">
@@ -725,7 +724,7 @@ document.write(`
 </div>
 </section>
 <section id="plot-responses-in-one-searchlight">
-<h3>8. Plot Responses in One Searchlight<a class="headerlink" href="#plot-responses-in-one-searchlight" title="Link to this heading">#</a></h3>
+<h2>8. Plot Responses in One Searchlight<a class="headerlink" href="#plot-responses-in-one-searchlight" title="Link to this heading">#</a></h2>
 <p>We can plot response patterns for one ico8 searchlight (index 262 for FFA).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -811,9 +810,8 @@ document.write(`
 </div>
 </div>
 </section>
-</section>
 <section id="funcional-connectivity-profile">
-<h2>6. Funcional Connectivity Profile<a class="headerlink" href="#funcional-connectivity-profile" title="Link to this heading">#</a></h2>
+<h2>9. Funcional Connectivity Profile<a class="headerlink" href="#funcional-connectivity-profile" title="Link to this heading">#</a></h2>
 <p>We can also quantify how brain regions are synchronized in time series by computing functional connectivity between two vertices using the Pearson correlation along the time series.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1003,12 +1001,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-dataset">3. Define dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">4. Load the data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-time-series">5. Plot Time-series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-response-pattern">6. Plot Response Pattern</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-searchlight-indices">7. Import searchlight indices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity-profile">6. Funcional Connectivity Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-response-pattern">6. Plot Response Pattern</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-searchlight-indices">7. Import searchlight indices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity-profile">9. Funcional Connectivity Profile</a></li>
 </ul>
   </nav></div>
 
