@@ -391,6 +391,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity">9. Funcional Connectivity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-connectivity-plot">10. Functional Connectivity Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-multi-subject-dataset">11. Load a multi-subject dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-multi-subject-dataset">12. Plot the multi-subject dataset</a></li>
 </ul>
             </nav>
         </div>
@@ -406,7 +408,7 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="data-visualization">
 <h1><strong>1. Data Visualization</strong><a class="headerlink" href="#data-visualization" title="Link to this heading">#</a></h1>
 <p>Plot time-series, response patterns, and functional connectivity profiles</p>
-<p><em>Lastly Updated: Oct 1 (9:27 PM)</em></p>
+<p><em>Lastly Updated: Oct 2 (2:17 PM)</em></p>
 <section id="setup-environment-for-colab">
 <h2>1. Setup environment for Colab<a class="headerlink" href="#setup-environment-for-colab" title="Link to this heading">#</a></h2>
 <p>Colab’s virtual environment is temporary, so you need to install any non-default packages each time you run the script. Run the following cell first to set up the environment.</p>
@@ -414,7 +416,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 1</span>
 <span class="c1"># Install the neuroboros package</span>
-<span class="c1"># The &#39;%%capture&#39; is used to suppress the output in this webpage</span>
+<span class="c1"># The &#39;%%capture&#39; is used to suppress the output in the cheatsheet page</span>
 <span class="o">%%capture</span>
 <span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">neuroboros</span>
 </pre></div>
@@ -535,8 +537,8 @@ document.write(`
 </section>
 <section id="plot-time-series">
 <h2>5. Plot Time-series<a class="headerlink" href="#plot-time-series" title="Link to this heading">#</a></h2>
-<p>Each row of the data represents time points (TR = 0 to 450), and the columns correspond to cortical vertices (9675 in total). You can plot a response time series (TR) for a cortical vertex (vertex #).</p>
-<p>Here, we will plot one for the first vertex index (vertex [0]), from TR 100 to TR 200.</p>
+<p>Each row of the data represents time points (TR = 0 to 450), and the columns correspond to cortical vertices (9666 in total). You can plot a response time series (TR) for a cortical vertex (vertex #).</p>
+<p>Here, we will plot one for the first vertex index (vertex [6579]), from TR 100 to TR 200.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 5</span>
@@ -897,6 +899,140 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="load-a-multi-subject-dataset">
+<h2>11. Load a multi-subject dataset<a class="headerlink" href="#load-a-multi-subject-dataset" title="Link to this heading">#</a></h2>
+<p>To load a multi-subject dataset, you can use a for loop to repeat the same code for multiple subjects. For example, for brain in range(3) sets up three indices, from 0 to 2, and the brain variable sequentially takes on each index value, executing the code within the loop for each iteration.</p>
+<p>However, before directly using these indices, let’s first check the structure of the subject IDs in the Forrest dataset to ensure that the index values align with the subjects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## This is how we defined the Forrest dataset</span>
+<span class="c1"># dset = nb.Forrest() # Load the Forrest dataset</span>
+<span class="c1"># sids = dset.subjects # Get all subject IDs (for &quot;dset&quot;)</span>
+
+<span class="c1"># check the subject ids</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sids</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;01&#39;, &#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;09&#39;, &#39;10&#39;, &#39;14&#39;, &#39;15&#39;, &#39;16&#39;, &#39;17&#39;, &#39;18&#39;, &#39;19&#39;, &#39;20&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The subject IDs follow the structure <code class="docutils literal notranslate"><span class="pre">01</span></code>, <code class="docutils literal notranslate"><span class="pre">02</span></code>, <code class="docutils literal notranslate"><span class="pre">03</span></code>. However, if we use <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">brain</span> <span class="pre">in</span> <span class="pre">range(3)</span></code>, Python will automatically use the indices <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>. Therefore, to correctly match the subject IDs, we can use the brain index to retrieve the corresponding subject IDs from sids, starting from the first participant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## This is how we defined a single subject dataset</span>
+<span class="c1"># sid = sids[0] # choose the first subject data</span>
+<span class="c1"># dm = dset.get_data(sid, &#39;forrest&#39;, 1, &#39;r&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a list where we can save data for multiple subjects</span>
+<span class="n">dms</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">brain</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+
+    <span class="c1"># Load the data for a single subject with specified parameters</span>
+    <span class="c1"># (subject id, &#39;dataset&#39;, run number, &#39;hemisphere&#39;)</span>
+    <span class="n">dm</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">sids</span><span class="p">[</span><span class="n">brain</span><span class="p">],</span> <span class="s1">&#39;forrest&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="c1"># The shape of dm is (451, 9666)</span>
+    <span class="c1"># - 451 represents time points (TRs)</span>
+    <span class="c1"># - 9666 represents vertices for right hemisphere</span>
+
+    <span class="c1"># Append the current subject&#39;s full data (all RTs and vertices) to dms</span>
+    <span class="n">dms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+
+<span class="c1"># Stack the data across subjects to create a 3D array where the shape is (3, 451, 9666)</span>
+<span class="n">dms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">dms</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 451, 9666)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dms</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># (3 subjects, 451 time points, and 9666 vertices)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 451, 9666)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-the-multi-subject-dataset">
+<h2>12. Plot the multi-subject dataset<a class="headerlink" href="#plot-the-multi-subject-dataset" title="Link to this heading">#</a></h2>
+<p>Let’s try to plot a line graph for one vertex, similar to what we did in the section <strong>5. Plot Time-series</strong>.</p>
+<p>Now that our dataset is a 3D array (subjects, time points, vertices), we need to calculate the average brain activity across all participants for each TR and each vertex.</p>
+<p>Here’s an example where we compute the average response time series (TR from 100 to 200) for vertex index 6579 (the FFA center vertex) across all subjects:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_series</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dms</span><span class="p">[:,</span> <span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span> <span class="mi">6579</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">time_series</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># for each time point</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_series</span><span class="p">,</span> <span class="s2">&quot;r.-&quot;</span><span class="p">)</span> <span class="c1"># Plot the time series with red dots and lines</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time-point (TR=2s)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean MR signal (normalized)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;FFA center vertex&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cfa61a488c14446667ac4e4922a54a47fce17f6fcc915ecff158ac3a8ebe4f70.png" src="_images/cfa61a488c14446667ac4e4922a54a47fce17f6fcc915ecff158ac3a8ebe4f70.png" />
+</div>
+</div>
+<p>We can also plot the averaged response pattern (brain map) for a specific time point, similar to what we did in 6. Plot Response Pattern. In this case, we will compute the mean activity for a specific time point, such as TR 47, by averaging the response for each vertex individually (across all subjects). This gives us a brain map with a total of 9666 vertices.</p>
+<p>For example, the following code calculates the brain map for TR 47:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brain_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dms</span><span class="p">[:,</span> <span class="mi">47</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">brain_map</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># for each vertex</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9666,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot an image of the mean response at TR = 47 for the right hemisphere</span>
+<span class="c1"># with a blank array for left hemisphere (lh_misus_one)</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">brain_map</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Mean Response pattern&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/91917ac8d3e73999c9a0b57502947166b70f697055dbfc793e5c6946e765f074.png" src="_images/91917ac8d3e73999c9a0b57502947166b70f697055dbfc793e5c6946e765f074.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -973,6 +1109,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity">9. Funcional Connectivity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-connectivity-plot">10. Functional Connectivity Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-multi-subject-dataset">11. Load a multi-subject dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-multi-subject-dataset">12. Plot the multi-subject dataset</a></li>
 </ul>
   </nav></div>
 
