@@ -389,7 +389,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-response-pattern">6. Plot Response Pattern</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-searchlight-indices">7. Import searchlight indices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity-profile">9. Funcional Connectivity Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity">9. Funcional Connectivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-connectivity-plot">10. Functional Connectivity Plot</a></li>
 </ul>
             </nav>
         </div>
@@ -412,9 +413,10 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 1</span>
-<span class="c1"># start and install neuroboros</span>
+<span class="c1"># Install the neuroboros package</span>
+<span class="c1"># The &#39;%%capture&#39; is used to suppress the output in this webpage</span>
 <span class="o">%%capture</span>
-<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">neuroboros</span> <span class="n">hyperalignment</span>
+<span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">neuroboros</span>
 </pre></div>
 </div>
 </div>
@@ -451,9 +453,10 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 3</span>
 <span class="c1"># define dataset</span>
-<span class="n">dset</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">Forrest</span><span class="p">()</span>
-<span class="n">sids</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">subjects</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">sids</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sids</span><span class="p">)</span>
+<span class="c1"># &#39;sids&#39; contains the subject IDs of participants in the dataset</span>
+<span class="n">dset</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">Forrest</span><span class="p">()</span> <span class="c1"># Load the Forrest dataset</span>
+<span class="n">sids</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">subjects</span> <span class="c1"># Get all subject IDs</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">sids</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sids</span><span class="p">)</span> <span class="c1"># Check the type and number of subject IDs</span>
 </pre></div>
 </div>
 </div>
@@ -464,10 +467,10 @@ document.write(`
 </div>
 </div>
 <p>Python uses zero-based indexing, meaning it starts counting from 0, not 1.</p>
-<p>To get the subject IDs of the first three participants, use <code class="docutils literal notranslate"><span class="pre">sids[0:2]</span></code>.</p>
+<p>To get the subject IDs of the first three participants, use <code class="docutils literal notranslate"><span class="pre">sids[0:3]</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sids</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sids</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -497,22 +500,22 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 4</span>
-<span class="c1"># upload data (one right hemisphere for one run)</span>
-<span class="n">sid</span> <span class="o">=</span> <span class="n">sids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Upload right hemisphere data for one subject (subject ID is sid[0]) for a specific run</span>
+<span class="n">sid</span> <span class="o">=</span> <span class="n">sids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># choose the first subject data</span>
 <span class="n">dm</span> <span class="o">=</span> <span class="n">dset</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span> <span class="s1">&#39;forrest&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="c1"># (subject id, &#39;dataset&#39;, run, &#39;hemisphere&#39;)</span>
+<span class="c1"># command structure: get_data(subject id, &#39;dataset&#39;, run number, &#39;hemisphere&#39;)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">dm</span><span class="p">),</span> <span class="n">dm</span><span class="o">.</span><span class="n">dtype</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dm</span><span class="p">),</span> <span class="n">dm</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(numpy.ndarray, dtype(&#39;float64&#39;))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt; float64
 </pre></div>
 </div>
 </div>
@@ -532,15 +535,15 @@ document.write(`
 </section>
 <section id="plot-time-series">
 <h2>5. Plot Time-series<a class="headerlink" href="#plot-time-series" title="Link to this heading">#</a></h2>
-<p>Each row of the data represents time points (TR = 0 to 450), and the columns correspond to cortical vertices (9675 in total).</p>
-<p>You can plot a response time series for a cortical vertex. Here, we will plot one for the first vertex index, from TR 100 to TR 200.</p>
+<p>Each row of the data represents time points (TR = 0 to 450), and the columns correspond to cortical vertices (9675 in total). You can plot a response time series (TR) for a cortical vertex (vertex #).</p>
+<p>Here, we will plot one for the first vertex index (vertex [0]), from TR 100 to TR 200.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 5</span>
-<span class="c1"># plot line graph of time series</span>
-<span class="c1">## FFA center vertex is 6579 in ico32 (and 262 in ico8)</span>
-<span class="n">time_series1</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="mi">6579</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_series1</span><span class="p">,</span> <span class="s2">&quot;b.-&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the time series data for a specific cortical vertex, for example, FFA</span>
+<span class="c1">## FFA center vertex is identified as 6579 in ico32 resolution</span>
+<span class="n">time_series1</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="mi">6579</span><span class="p">]</span> <span class="c1"># Extract data for time-points 100 to 200 for vertex 6579</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_series1</span><span class="p">,</span> <span class="s2">&quot;b.-&quot;</span><span class="p">)</span> <span class="c1"># Plot the time series with blue dots and lines</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time-point (TR=2s)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;MR signal (normalized)&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;FFA center vertex&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
@@ -562,17 +565,17 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 6</span>
-<span class="c1"># plot an image of responses</span>
+<span class="c1"># Plot an image of the responses at a specific time point (TR = 47)</span>
 
-<span class="c1"># make blank files of the proper length for left and right hemispheres</span>
-<span class="n">lh_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9675</span><span class="p">))</span>
-<span class="n">rh_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span>
-<span class="n">lh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9675</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">rh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
+<span class="c1"># Create blank arrays with the appropriate number of vertices for left and right hemispheres</span>
+<span class="n">lh_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9675</span><span class="p">))</span>  <span class="c1"># For left hemisphere vertices</span>
+<span class="n">rh_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span>  <span class="c1"># For right hemisphere vertices</span>
+<span class="n">lh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9675</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>  <span class="c1"># Initialize left hemisphere with -1 for a blue background</span>
+<span class="n">rh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>  <span class="c1"># Initialize right hemisphere with -1 for a blue background</span>
 
-<span class="c1"># plot image of one timepoint, TR = 47</span>
-<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">dm</span><span class="p">[</span><span class="mi">47</span><span class="p">,:]],</span>
-        <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
+<span class="c1"># Plot an image of the response at TR = 47 for the right hemisphere (vertex data from dm)</span>
+<span class="c1"># with a blank array for left hemisphere (lh_misus_one)</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">dm</span><span class="p">[</span><span class="mi">47</span><span class="p">,</span> <span class="p">:]],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -580,7 +583,7 @@ document.write(`
 <img alt="_images/d3a29f6e8dd9c9eac10f709609f13c5e4e2d32c2d42b073f3137969f2c3238da.png" src="_images/d3a29f6e8dd9c9eac10f709609f13c5e4e2d32c2d42b073f3137969f2c3238da.png" />
 </div>
 </div>
-<p>THe <code class="docutils literal notranslate"><span class="pre">plot</span></code> command in <code class="docutils literal notranslate"><span class="pre">neuroboros</span></code> allows for different color scales available for <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">plot</span></code> command in <code class="docutils literal notranslate"><span class="pre">neuroboros</span></code> allows for different color scales available for <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
 <p>Let’s try one of color-blind friendly colormaps, <code class="docutils literal notranslate"><span class="pre">magma</span></code>. (Check out <a class="reference external" href="https://matplotlib.org/stable/users/explain/colors/colormaps.html#overview">this</a> for more options.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -610,11 +613,17 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 7</span>
-<span class="c1"># import searchlight indices</span>
-<span class="c1">## rh, radii = 10, 15, and 20 mm</span>
+<span class="c1"># Import searchlight indices for the right hemisphere (ico8 resolution)</span>
+<span class="c1">## searchlight radius = 10, 15, and 20 mm (right hemisphere)</span>
 <span class="n">SLS_ico8_10mm_rh</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">sls</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="n">center_space</span><span class="o">=</span><span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">return_dists</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">SLS_ico8_15mm_rh</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">sls</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="n">center_space</span><span class="o">=</span><span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">return_dists</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">SLS_ico8_20mm_rh</span><span class="p">,</span> <span class="n">Dists_ico8_20mm_rh</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">sls</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">space</span><span class="o">=</span><span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="n">center_space</span><span class="o">=</span><span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">return_dists</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># command structure: nb.sls(&#39;hemisphere&#39;, radius, vertex apace, center space, option to load file of distances from center to each vertex)</span>
+<span class="c1"># - &#39;r&#39;: Right hemisphere</span>
+<span class="c1"># - radius: Searchlight radius in mm</span>
+<span class="c1"># - space: Vertex space for searchlight calculations (onavg-ico32 in this case)</span>
+<span class="c1"># - center_space: Resolution of the searchlight center vertices (onavg-ico8)</span>
+<span class="c1"># - return_dists: Whether to return distances between vertices in the searchlight</span>
 </pre></div>
 </div>
 </div>
@@ -635,7 +644,8 @@ document.write(`
 <p>Although all the searchlights share the same 607 centers, the number of vertices within each searchlight varies depending on the radius. You can verify this by checking the length of the output arrays as below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SLS_ico8_10mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vertex 0&#39;s searchlight in 10 mm radius</span>
+<span class="n">SLS_ico8_10mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -649,7 +659,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SLS_ico8_15mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vertex 0&#39;s searchlight in 15 mm radius</span>
+<span class="n">SLS_ico8_15mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -666,7 +677,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vertex 0&#39;s searchlight in 20 mm radius</span>
+<span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -686,7 +698,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>If you set `return_dists=True``, you can check the distance from each vertex to the center of the searchlight.</p>
+<p>If you set <code class="docutils literal notranslate"><span class="pre">return_dists=True</span></code>, you can check the distance from each vertex to the center of the searchlight.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Dists_ico8_20mm_rh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -792,15 +804,19 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 8</span>
 <span class="c1"># plot responses in one searchlight (right FFA) for time-point 47</span>
-<span class="n">sl</span> <span class="o">=</span> <span class="mi">262</span> <span class="c1"># right FFA</span>
-<span class="n">tp</span> <span class="o">=</span> <span class="mi">47</span>
+<span class="n">sl</span> <span class="o">=</span> <span class="mi">262</span>  <span class="c1"># Searchlight index for the right FFA (corresponds to vertex 262 in ico8 resolution)</span>
+<span class="n">tp</span> <span class="o">=</span> <span class="mi">47</span>  <span class="c1"># Time-point to visualize (TR = 47)</span>
 
-<span class="n">rh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">rh_sl</span> <span class="o">=</span> <span class="n">rh_minus_one</span>
+<span class="c1"># Create a background for right hemisphere data (will be blue background for our searchlight data)</span>
+<span class="n">rh_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9666</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span> <span class="c1"># Initialize right hemisphere data to -1 (blue background)</span>
+<span class="n">rh_sl</span> <span class="o">=</span> <span class="n">rh_minus_one</span> <span class="c1"># Copy this to rh_sl, which will be updated with actual data below</span>
 
+<span class="c1"># Loop through all vertices within the searchlight (using ico8 resolution with a 20mm radius)</span>
+<span class="c1"># The searchlight index &quot;sl&quot; (262) corresponds to the right FFA, and we extract the vertices in its searchlight</span>
 <span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">])):</span>
-  <span class="n">rh_sl</span><span class="p">[</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="n">tp</span><span class="p">,</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span>
+  <span class="n">rh_sl</span><span class="p">[</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dm</span><span class="p">[</span><span class="n">tp</span><span class="p">,</span><span class="n">SLS_ico8_20mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="n">vtx</span><span class="p">]]</span> <span class="c1"># Copy actual data from dm to rh_sl for plotting</span>
 
+<span class="c1"># Plot the updated right hemisphere data with the searchlight values</span>
 <span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">rh_sl</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Response pattern&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -810,123 +826,74 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="funcional-connectivity-profile">
-<h2>9. Funcional Connectivity Profile<a class="headerlink" href="#funcional-connectivity-profile" title="Link to this heading">#</a></h2>
-<p>We can also quantify how brain regions are synchronized in time series by computing functional connectivity between two vertices using the Pearson correlation along the time series.</p>
+<section id="funcional-connectivity">
+<h2>9. Funcional Connectivity<a class="headerlink" href="#funcional-connectivity" title="Link to this heading">#</a></h2>
+<p>To visualize areas that are functionally connected to the right FFA based on similarity, we first calculate the average activity of the data points within the right FFA searchlight for each time point. Then, we measure how much this activity correlates (i.e., covaries over time) with other data points across the brain.</p>
+<p>To calculate connectivity vectors across the time series, we will begin by computing the mean activity for each time frame within the target searchlight.</p>
+<p>The data matrix dm is structured such that the rows represent time points and the columns represent cortical vertices (<code class="docutils literal notranslate"><span class="pre">dm(time_series,</span> <span class="pre">vertex)</span></code>). In this step, we filter the data to focus on the vertices within a defined searchlight using <code class="docutils literal notranslate"><span class="pre">SLS_ico8_10mm_rh[target_searchlight_vertex]</span></code>.</p>
+<p>For example, the vertex for the right pFFA in ico8 space is 262 (and 467 for the right pSTS). We can obtain the mean brain activity for each time point within the searchlight of the right pFFA (or right pSTS) using the following code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9666)
-</pre></div>
-</div>
-</div>
-</div>
-<p>The data consist of a total of 9666 vertices. By calculating the correlation along the time series for all pairs of vertices, we can generate the connectivity matrix.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">dm</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
-<span class="n">mat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">squareform</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(46710945,) (9666, 9666)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="n">_</span><span class="o">/</span><span class="mf">2.54</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 9</span>
+<span class="c1"># Calculate functional connectivity vectors for two target regions: pFFA (~vertex 262) and pSTS (~vertex 467)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Functional connectivity matrix&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Vertices&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Vertices&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/663c16575db0c41f455848be0c7427976addf37f9575dab9a56d59cddd86c3a6.png" src="_images/663c16575db0c41f455848be0c7427976addf37f9575dab9a56d59cddd86c3a6.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># To simplify the calculation, we can downsample the data matrix from ico32 resolution to ico8 resolution.</span>
-<span class="n">xfm</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico32&#39;</span><span class="p">,</span> <span class="s1">&#39;onavg-ico8&#39;</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">xfm</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9666, 607)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm_ico32</span> <span class="o">=</span> <span class="n">dm</span>
+<span class="c1"># Calculate the mean time series for the 10mm radius searchlights</span>
+<span class="n">mean_ffa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dm</span><span class="p">[:,</span> <span class="n">SLS_ico8_10mm_rh</span><span class="p">[</span><span class="mi">262</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mean time series for pFFA (vertex 262)</span>
+<span class="n">mean_sts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dm</span><span class="p">[:,</span> <span class="n">SLS_ico8_10mm_rh</span><span class="p">[</span><span class="mi">467</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Mean time series for pSTS (vertex 467)</span>
 
-<span class="n">dm_ico8</span> <span class="o">=</span> <span class="n">dm_ico32</span> <span class="o">@</span> <span class="n">xfm</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dm_ico32</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">xfm</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dm_ico8</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># calculate connectivity vectors</span>
+<span class="n">connvec_ffa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">mean_ffa</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">T</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
+<span class="n">connvec_sts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">mean_sts</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">T</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">:]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 9666) (9666, 607) (451, 607)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/usr/local/lib/python3.10/dist-packages/numpy/lib/function_base.py:2898: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
 </pre></div>
 </div>
 </div>
 </div>
+<p>We also calculated the functional connectivity vectors by correlating the average time series of the target region (either the pFFA or pSTS) with the time series of all other vertices in the brain. This was done using Pearson correlation across the time series.</p>
+<p>For example, connvec_ffa stores the correlation coefficients (using <code class="docutils literal notranslate"><span class="pre">np.corrcoef</span></code>) between the average time series of the right pFFA and the time series of all other vertices. These coefficients indicate the degree of functional connectivity between the right pFFA and other regions of the brain.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">pdist</span><span class="p">(</span><span class="n">dm_ico8</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s1">&#39;correlation&#39;</span><span class="p">)</span>
-<span class="n">mat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">squareform</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">connvec_ffa</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">connvec_sts</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(183921,) (607, 607)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9666,) (9666,)
 </pre></div>
 </div>
 </div>
 </div>
+<p>The 9666 data points, which correspond to all the vertices in the right hemisphere, now each have a correlation coefficient representing how strongly their activity is correlated with the activity within the searchlight for either the right pFFA or pSTS.</p>
+</section>
+<section id="functional-connectivity-plot">
+<h2>10. Functional Connectivity Plot<a class="headerlink" href="#functional-connectivity-plot" title="Link to this heading">#</a></h2>
+<p>You can also plot these connectivity patterns, which consist of correlation coefficients for each vertex. These values show how brain activity correlates between each brain region and the target searchlight area (e.g., pFFA or pSTS) across time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="n">_</span><span class="o">/</span><span class="mf">2.54</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Functional connectivity matrix&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Vertices&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Vertices&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">cb</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">cb</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Correlation&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># cell 10</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">connvec_ffa</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;pFFA connectivity&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f9e561ce4bfbd609d59b12cb445c3d62fd23885f358ebd47fb49ce5aeb14a784.png" src="_images/f9e561ce4bfbd609d59b12cb445c3d62fd23885f358ebd47fb49ce5aeb14a784.png" />
+<img alt="_images/332b780e700bc3470808caf9e0f8a707c9d0cbc025cb51a21e2e91343fccd611.png" src="_images/332b780e700bc3470808caf9e0f8a707c9d0cbc025cb51a21e2e91343fccd611.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">connvec_sts</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;PRGn&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;pSTS connectivity&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/d3f6086e2c1f79001fdb6cfb94ffb2cbf0a551900f82e5f93c263bafce25df51.png" src="_images/d3f6086e2c1f79001fdb6cfb94ffb2cbf0a551900f82e5f93c263bafce25df51.png" />
 </div>
 </div>
 </section>
@@ -1004,7 +971,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-response-pattern">6. Plot Response Pattern</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-searchlight-indices">7. Import searchlight indices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-responses-in-one-searchlight">8. Plot Responses in One Searchlight</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity-profile">9. Funcional Connectivity Profile</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funcional-connectivity">9. Funcional Connectivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-connectivity-plot">10. Functional Connectivity Plot</a></li>
 </ul>
   </nav></div>
 
