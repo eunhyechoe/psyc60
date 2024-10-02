@@ -16,9 +16,10 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 # cell 1
-# start and install neuroboros
+# Install the neuroboros package
+# The '%%capture' is used to suppress the output in this webpage
 %%capture
-%pip install -U neuroboros hyperalignment
+%pip install -U neuroboros
 ------------------
 
 ----- stderr -----
