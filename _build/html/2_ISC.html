@@ -383,13 +383,13 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-environment-import-libraries-and-load-searchlight-indices">1. Setup environment, import libraries, and load searchlight indices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-multi-subject-dataset">2. Load a multi-subject dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-isc-for-all-indiviadual-pairs-all-vertices">3. Calculate ISC for all indiviadual pairs, all vertices</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-isc-for-all-vertices-all-individual-pairs">3. Calculate ISC for all vertices, all individual pairs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">(1) Load dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mean-isc-across-pairs">(2) Calculate mean ISC across pairs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-brain-image-of-iscs">(3) Plot brain image of ISCs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs-for-searchlight">4. Calculate ISCs for searchlight</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs-for-searchlight-all-individual-pairs">4. Calculate ISCs for searchlight, all individual pairs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-searchlight-means">(1) Calculate searchlight means</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs">(2) Calculate ISCs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">(3) Plot brain image of ISCs</a></li>
@@ -401,6 +401,17 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tip-for-assignment-2-s-challenge">💡 Tip for Assignment 2’s Challenge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs-for-all-vertices-individuals-vs-others-means">6. Calculate ISCs for all vertices, individuals vs others means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-means-of-others">(1) Generate the means of others</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mean-iscs-across-pairs">(2) Calculate mean ISCs across pairs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">(3) Plot brain image of ISCs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-differences-between-iscs">7. Calculate differences between ISCs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-individual-pairs-individual-vs-others-mean-pairs">(1) All individual pairs - Individual vs others mean pairs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-vertices-searchlight">(2) All vertices - Searchlight</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -415,7 +426,7 @@ document.write(`
   <p><a href="https://colab.research.google.com/github/eunhyechoe/psyc60/blob/main/2_ISC.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="intersubject-correlation-isc-analysis">
 <h1><strong>2. Intersubject Correlation (ISC) Analysis</strong><a class="headerlink" href="#intersubject-correlation-isc-analysis" title="Link to this heading">#</a></h1>
-<p><em>Lastly Updated: Oct 13 (1:28 AM)</em></p>
+<p><em>Lastly Updated: Oct 15 (04:05 PM)</em></p>
 <section id="setup-environment-import-libraries-and-load-searchlight-indices">
 <h2>1. Setup environment, import libraries, and load searchlight indices<a class="headerlink" href="#setup-environment-import-libraries-and-load-searchlight-indices" title="Link to this heading">#</a></h2>
 <p>As mentioned in the previous tutorial, Colab refreshes its environment each time, so we need to prepare for data analysis again. Just like last time, let’s install several packages, including <code class="docutils literal notranslate"><span class="pre">neuroboros</span></code>, and load the necessary libraries and searchlight indices.</p>
@@ -527,8 +538,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="calculate-isc-for-all-indiviadual-pairs-all-vertices">
-<h2>3. Calculate ISC for all indiviadual pairs, all vertices<a class="headerlink" href="#calculate-isc-for-all-indiviadual-pairs-all-vertices" title="Link to this heading">#</a></h2>
+<section id="calculate-isc-for-all-vertices-all-individual-pairs">
+<h2>3. Calculate ISC for all vertices, all individual pairs<a class="headerlink" href="#calculate-isc-for-all-vertices-all-individual-pairs" title="Link to this heading">#</a></h2>
 <section id="load-dataset">
 <h3>(1) Load dataset<a class="headerlink" href="#load-dataset" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -557,11 +568,19 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/numpy/lib/function_base.py:2897: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/usr/local/lib/python3.10/dist-packages/numpy/lib/function_base.py:2898: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Therefore, each vertex will have 3x3 correlation matrix for three participants.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ISCs</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ISCs_clean</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -611,7 +630,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot positive values only</span>
 <span class="n">lh_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">9675</span><span class="p">))</span>
-<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_zero</span><span class="p">,</span> <span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean pairwise ISC&#39;</span><span class="p">)</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_zero</span><span class="p">,</span> <span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ISCs_mean</span><span class="p">),</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean pairwise ISC&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -634,9 +653,9 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="calculate-iscs-for-searchlight">
-<h2>4. Calculate ISCs for searchlight<a class="headerlink" href="#calculate-iscs-for-searchlight" title="Link to this heading">#</a></h2>
-<p>Let’s calculate the intersubject correlation (ISC) for each searchlight, focusing on the brain activity of the vertices within each searchlight for each time point, rather than individual vertices across time. For this exercise, we will use ico8 searchlights with a radius of 15mm. The ico8 space provides a total of 607 searchlights.</p>
+<section id="calculate-iscs-for-searchlight-all-individual-pairs">
+<h2>4. Calculate ISCs for searchlight, all individual pairs<a class="headerlink" href="#calculate-iscs-for-searchlight-all-individual-pairs" title="Link to this heading">#</a></h2>
+<p>Let’s calculate the intersubject correlation (ISC) for each searchlight, focusing on the brain activity of the vertices within each searchlight across time, rather than individual vertices across time. For this exercise, we will use ico8 searchlights with a radius of 15mm. The ico8 space provides a total of 607 searchlights.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_15mm_rh</span><span class="p">)</span>
@@ -651,12 +670,12 @@ document.write(`
 </div>
 <section id="calculate-searchlight-means">
 <h3>(1) Calculate searchlight means<a class="headerlink" href="#calculate-searchlight-means" title="Link to this heading">#</a></h3>
-<p>However, before calculating ISC, we first need to compute the average activity of the vertices within each searchlight for each timeseries, as we focus on searchlights rather than individual vertices. <code class="docutils literal notranslate"><span class="pre">sl_means</span></code> will have the structure <code class="docutils literal notranslate"><span class="pre">[subject,</span> <span class="pre">timeseries,</span> <span class="pre">searchlight]</span></code>.</p>
+<p>However, before calculating ISC, we first need to compute the average activities of all vertices within each searchlight for each timeseries, as we focus on searchlights rather than individual vertices. <code class="docutils literal notranslate"><span class="pre">sl_means</span></code> will have the structure <code class="docutils literal notranslate"><span class="pre">[subject,</span> <span class="pre">timeseries,</span> <span class="pre">searchlight]</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part II, ISCs, calculate ISCs of searchlight time-series</span>
 <span class="c1">## calculate sl means</span>
-<span class="n">sl_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">451</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_10mm_rh</span><span class="p">)))</span>
+<span class="n">sl_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">451</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_15mm_rh</span><span class="p">)))</span>
 <span class="k">for</span> <span class="n">sl</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_15mm_rh</span><span class="p">)):</span>
   <span class="n">sl_means</span><span class="p">[:,:,</span><span class="n">sl</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dm</span><span class="p">[:,:,</span><span class="n">SLS_ico8_15mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">]],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
@@ -678,7 +697,7 @@ document.write(`
 </section>
 <section id="calculate-iscs">
 <h3>(2) Calculate ISCs<a class="headerlink" href="#calculate-iscs" title="Link to this heading">#</a></h3>
-<p>Let’s see if the brain activity within each searchlight correlates across time!</p>
+<p>Let’s see if the brain activity within each searchlight correlates across time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate coarse ISCs</span>
@@ -695,8 +714,8 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part II, ISC, cell 2</span>
 <span class="c1">## calculate mean searchlight ISCs to show brain map</span>
-<span class="n">ISCs_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ISCs_ico8_clean</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max ISC =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ISCs_mean</span><span class="p">))</span>
+<span class="n">ISCs_mean_ico8</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ISCs_ico8_clean</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max ISC =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ISCs_mean_ico8</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -713,7 +732,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## plot mean pairwise ISCs</span>
 <span class="n">lh8_minus_one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">603</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean pairwise searchlight ISCs&#39;</span><span class="p">)</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_ico8</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean pairwise searchlight ISCs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -724,7 +743,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lh8_zero</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">603</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_zero</span><span class="p">,</span> <span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean pairwise searchlight ISCs&#39;</span><span class="p">)</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_zero</span><span class="p">,</span> <span class="n">ISCs_mean_ico8</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;magma&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.58</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean pairwise searchlight ISCs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -800,120 +819,174 @@ document.write(`
 <section id="tip-for-assignment-2-s-challenge">
 <h2>💡 Tip for Assignment 2’s Challenge<a class="headerlink" href="#tip-for-assignment-2-s-challenge" title="Link to this heading">#</a></h2>
 <p>One of the methods for calculating ISC that we covered in this tutorial involves calculating the correlation for all possible participant pairs and then averaging the results. <em>However</em>, there is another approach, where you calculate <strong>the correlation between each participant and the mean of all other participants excluding that individual.</strong></p>
-<p>In the challenge section of Assignment 2, you are asked to compare the ISC results using this method with the two methods you just practiced in this tutorial:</p>
-<ol class="arabic simple">
-<li><p>ISCs using individual pairs</p></li>
-<li><p>ISCs using searchlight means</p></li>
-</ol>
+<p>In the challenge section of Assignment 2, you are asked to compare the ISC results using this method with the two methods you just practiced in this tutorial: (1) ISCs using individual pairs (2) ISCs using searchlight means</p>
+</section>
+<section id="calculate-iscs-for-all-vertices-individuals-vs-others-means">
+<h2>6. Calculate ISCs for all vertices, individuals vs others means<a class="headerlink" href="#calculate-iscs-for-all-vertices-individuals-vs-others-means" title="Link to this heading">#</a></h2>
+<p>First, we will calculate the correlation of each individual subject’s data with the mean of all other participants’ data across time for all vertices. Since <code class="docutils literal notranslate"><span class="pre">dm</span></code> has the structure <code class="docutils literal notranslate"><span class="pre">[subj,</span> <span class="pre">timeseries,</span> <span class="pre">vertex]</span></code>, the data for a specific participant and vertex can be accessed using <code class="docutils literal notranslate"><span class="pre">dm[subj,</span> <span class="pre">:,</span> <span class="pre">vtx]</span></code>.</p>
+<section id="generate-the-means-of-others">
+<h3>(1) Generate the means of others<a class="headerlink" href="#generate-the-means-of-others" title="Link to this heading">#</a></h3>
+<p>Now, let’s create <code class="docutils literal notranslate"><span class="pre">dm_others</span></code>, which will store the mean of others’ data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # data for subject 1 and 2 (Python starts label with 0)</span>
-<span class="c1"># dm1 = dset.get_data(sids[0], &#39;forrest&#39;, 1, &#39;lr&#39;)</span>
-<span class="c1"># dm2 = dset.get_data(sids[1], &#39;forrest&#39;, 1, &#39;lr&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dm_others</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">451</span><span class="p">,</span><span class="mi">9666</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">subj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+  <span class="n">dm_others</span><span class="p">[</span><span class="n">subj</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dm</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">dm</span><span class="p">[</span><span class="n">subj</span><span class="p">,:,:])</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>This will be compared with the same statistical method we used to calculate ISCs for all individual pairs.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(dm1.shape, dm2.shape)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate ISCs between individual vs others mean,</span>
+<span class="c1"># for all vertices across time</span>
+<span class="n">ISCs_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">9666</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">subj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">vtx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9666</span><span class="p">):</span>
+    <span class="n">ISCs_2</span><span class="p">[</span><span class="n">subj</span><span class="p">,</span> <span class="n">vtx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">dm</span><span class="p">[</span><span class="n">subj</span><span class="p">,</span> <span class="p">:,</span> <span class="n">vtx</span><span class="p">],</span> <span class="n">dm_others</span><span class="p">[</span><span class="n">subj</span><span class="p">,</span> <span class="p">:,</span> <span class="n">vtx</span><span class="p">])[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ISCs_2_clean</span> <span class="o">=</span> <span class="n">ISCs_2</span>
+    <span class="n">ISCs_2_clean</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">ISCs_2</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-mean-iscs-across-pairs">
+<h3>(2) Calculate mean ISCs across pairs<a class="headerlink" href="#calculate-mean-iscs-across-pairs" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate means of ISCs across the pairs (individuals vs others mean) for all vertices</span>
+<span class="n">ISCs_mean_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ISCs_2_clean</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max ISC ind with other&#39;s mean =&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ISCs_mean_2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(451, 19341) (451, 19341)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max ISC ind with other&#39;s mean = 0.7185225649703808
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="id2">
+<h3>(3) Plot brain image of ISCs<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # number of timeseries/vertices</span>
-<span class="c1"># nt, nv = dm1.shape</span>
-<span class="c1"># print(nt, nv)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot with the same method</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.71</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean ISCs between individuals and others means&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>451 19341
-</pre></div>
+<img alt="_images/df0359517d80492d693fa0268ced1370f49ea3230610f6377470a3d31ee4a2db.png" src="_images/df0359517d80492d693fa0268ced1370f49ea3230610f6377470a3d31ee4a2db.png" />
 </div>
 </div>
-</div>
+</section>
+</section>
+<section id="calculate-differences-between-iscs">
+<h2>7. Calculate differences between ISCs<a class="headerlink" href="#calculate-differences-between-iscs" title="Link to this heading">#</a></h2>
+<section id="all-individual-pairs-individual-vs-others-mean-pairs">
+<h3>(1) All individual pairs - Individual vs others mean pairs<a class="headerlink" href="#all-individual-pairs-individual-vs-others-mean-pairs" title="Link to this heading">#</a></h3>
+<p>As ISCs between all individual pairs have the same resolution as the ISCs between individuals and the mean of others, we can simply subtract one from the other like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # compute Pearson R correlation between two subjects, for all vertices</span>
-<span class="c1"># isc = np.zeros((nv,))</span>
-<span class="c1"># for i in range(nv):</span>
-<span class="c1">#     isc[i] = pearsonr(dm1[:, i], dm2[:, i])[0]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ISCs_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ISCs_mean_2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-10-e9037f152eec&gt;:4: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
-  isc[i] = pearsonr(dm1[:, i], dm2[:, i])[0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9666,) (9666,)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nb.plot(isc,</span>
-<span class="c1">#         title=&#39;Inter-subject correlation&#39;,</span>
-<span class="c1">#         vmax=1, vmin=-1, cmap=&#39;bwr&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ISCs_mean_2</span><span class="o">-</span><span class="n">ISCs_mean</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c391d22feefd3e7e8d3116bee195cc3f098a668ab71e49b739dc27bf859c59d8.png" src="_images/c391d22feefd3e7e8d3116bee195cc3f098a668ab71e49b739dc27bf859c59d8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3333333333333333
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># nb.plot(isc2,</span>
-<span class="c1">#         title=&#39;Inter-subject correlation&#39;,</span>
-<span class="c1">#         vmax=1, vmin=-1, cmap=&#39;bwr&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_2</span><span class="o">-</span><span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean ISCs between individuals and others means&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c391d22feefd3e7e8d3116bee195cc3f098a668ab71e49b739dc27bf859c59d8.png" src="_images/c391d22feefd3e7e8d3116bee195cc3f098a668ab71e49b739dc27bf859c59d8.png" />
+<img alt="_images/a8eb01e951454d752af70d6b0fd9d93d1a99c4fe0bc3d1db8a3dfec682ad44a6.png" src="_images/a8eb01e951454d752af70d6b0fd9d93d1a99c4fe0bc3d1db8a3dfec682ad44a6.png" />
 </div>
 </div>
+</section>
+<section id="all-vertices-searchlight">
+<h3>(2) All vertices - Searchlight<a class="headerlink" href="#all-vertices-searchlight" title="Link to this heading">#</a></h3>
+<p>The searchlight analysis, with ico8 resolution, consists of 607 data points. To compare high-resolution data with this, we need to select the vertices corresponding to the centers of the 607 searchlights from the 9666 data points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # or calculate z-score</span>
-<span class="c1"># isc2 = np.mean(</span>
-<span class="c1">#     zscore(dm1, axis=0) * zscore(dm2, axis=0),</span>
-<span class="c1">#     axis=0)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ISCs_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ISCs_mean_ico8</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9666,) (607,)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">SLS_ico8_15mm_rh</span></code> contains all the vertices within each searchlight. For each searchlight, the index [0] represents the vertex that is located at the center of the searchlight. We can save the vertex of each searchlight’s center to <code class="docutils literal notranslate"><span class="pre">hires_centers</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">SLS_ico8_15mm_rh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>607
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># np.testing.assert_allclose(isc, isc2)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hires_centers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">607</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sl</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">607</span><span class="p">):</span>
+  <span class="n">hires_centers</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span> <span class="o">=</span> <span class="n">SLS_ico8_15mm_rh</span><span class="p">[</span><span class="n">sl</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now, using the vertex corresponding to each searchlight center <code class="docutils literal notranslate"><span class="pre">np.int_(hires_centers[sl])</span></code>, we can store a subset of the data from <code class="docutils literal notranslate"><span class="pre">ISCs_mean</span></code> into <code class="docutils literal notranslate"><span class="pre">ISCs_hi_to_lo</span></code> for the 607 data points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # load all of them</span>
-<span class="c1"># dms = [dset.get_data(sid, &#39;forrest&#39;, 1, &#39;lr&#39;)</span>
-<span class="c1">#        for sid in sids]</span>
-<span class="c1"># dms = np.stack(dms, axis=0)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ISCs_hi_to_lo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">607</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">sl</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">607</span><span class="p">):</span>
+  <span class="n">ISCs_hi_to_lo</span><span class="p">[</span><span class="n">sl</span><span class="p">]</span> <span class="o">=</span> <span class="n">ISCs_mean</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">(</span><span class="n">hires_centers</span><span class="p">[</span><span class="n">sl</span><span class="p">])]</span>
+  <span class="c1">#ISCs_clean[:,:,hires_centers[sl]]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>As a result, <code class="docutils literal notranslate"><span class="pre">ISCs_hi_to_lo</span></code> will have the same resolution as <code class="docutils literal notranslate"><span class="pre">ISCs_mean_ico8</span></code>, allowing for easy comparison and plotting through a simple subtraction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dms.shape</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_ico8</span><span class="o">-</span><span class="n">ISCs_hi_to_lo</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Difference between ISCs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/6b5a2bffbcf63472436a0f71afc82acccc947720056dfd169cdb1cb4619df5c5.png" src="_images/6b5a2bffbcf63472436a0f71afc82acccc947720056dfd169cdb1cb4619df5c5.png" />
 </div>
+</div>
+</section>
 </section>
 </section>
 
@@ -983,13 +1056,13 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-environment-import-libraries-and-load-searchlight-indices">1. Setup environment, import libraries, and load searchlight indices</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-a-multi-subject-dataset">2. Load a multi-subject dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-isc-for-all-indiviadual-pairs-all-vertices">3. Calculate ISC for all indiviadual pairs, all vertices</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-isc-for-all-vertices-all-individual-pairs">3. Calculate ISC for all vertices, all individual pairs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">(1) Load dataset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mean-isc-across-pairs">(2) Calculate mean ISC across pairs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-brain-image-of-iscs">(3) Plot brain image of ISCs</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs-for-searchlight">4. Calculate ISCs for searchlight</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs-for-searchlight-all-individual-pairs">4. Calculate ISCs for searchlight, all individual pairs</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-searchlight-means">(1) Calculate searchlight means</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs">(2) Calculate ISCs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">(3) Plot brain image of ISCs</a></li>
@@ -1001,6 +1074,17 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tip-for-assignment-2-s-challenge">💡 Tip for Assignment 2’s Challenge</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-iscs-for-all-vertices-individuals-vs-others-means">6. Calculate ISCs for all vertices, individuals vs others means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-means-of-others">(1) Generate the means of others</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-mean-iscs-across-pairs">(2) Calculate mean ISCs across pairs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">(3) Plot brain image of ISCs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-differences-between-iscs">7. Calculate differences between ISCs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-individual-pairs-individual-vs-others-mean-pairs">(1) All individual pairs - Individual vs others mean pairs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#all-vertices-searchlight">(2) All vertices - Searchlight</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
