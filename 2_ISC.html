@@ -917,12 +917,12 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_2</span><span class="o">-</span><span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;mean ISCs between individuals and others means&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_2</span><span class="o">-</span><span class="n">ISCs_mean</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Difference between ISCs&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a8eb01e951454d752af70d6b0fd9d93d1a99c4fe0bc3d1db8a3dfec682ad44a6.png" src="_images/a8eb01e951454d752af70d6b0fd9d93d1a99c4fe0bc3d1db8a3dfec682ad44a6.png" />
+<img alt="_images/d6adb8554d1aacbe4301bcf174cd2e05fe416ba1421c7d0419acb141b1459678.png" src="_images/d6adb8554d1aacbe4301bcf174cd2e05fe416ba1421c7d0419acb141b1459678.png" />
 </div>
 </div>
 </section>
@@ -975,15 +975,27 @@ document.write(`
 </div>
 </div>
 </div>
-<p>As a result, <code class="docutils literal notranslate"><span class="pre">ISCs_hi_to_lo</span></code> will have the same resolution as <code class="docutils literal notranslate"><span class="pre">ISCs_mean_ico8</span></code>, allowing for easy comparison and plotting through a simple subtraction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_ico8</span><span class="o">-</span><span class="n">ISCs_hi_to_lo</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Difference between ISCs&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">max</span><span class="p">(</span><span class="n">ISCs_mean_ico8</span><span class="o">-</span><span class="n">ISCs_hi_to_lo</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6b5a2bffbcf63472436a0f71afc82acccc947720056dfd169cdb1cb4619df5c5.png" src="_images/6b5a2bffbcf63472436a0f71afc82acccc947720056dfd169cdb1cb4619df5c5.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5143247716699202
+</pre></div>
+</div>
+</div>
+</div>
+<p>As a result, <code class="docutils literal notranslate"><span class="pre">ISCs_hi_to_lo</span></code> will have the same resolution as <code class="docutils literal notranslate"><span class="pre">ISCs_mean_ico8</span></code>, allowing for easy comparison and plotting through a simple subtraction.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nb</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lh8_minus_one</span><span class="p">,</span> <span class="n">ISCs_mean_ico8</span><span class="o">-</span><span class="n">ISCs_hi_to_lo</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.51</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Difference between ISCs (ico8)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/01e88b35f3cddeb3f38873265c57380fb9ce147e93b9d73a94f1e1778ddec8e8.png" src="_images/01e88b35f3cddeb3f38873265c57380fb9ce147e93b9d73a94f1e1778ddec8e8.png" />
 </div>
 </div>
 </section>
